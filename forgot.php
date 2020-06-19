@@ -2,19 +2,17 @@
     require('connect.php');
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST["email"];
-        $password = $_POST["psw"];
-        $encrypted_password = md5($password);
-        $query = "SELECT * FROM users WHERE email='$email' AND password='$encrypted_password'";
+        $new_password = $_POST["new_psw"];
+        $new_encrypted_password = md5($new_password);
+        $query = "UPDATE users SET password='$new_encrypted_password' WHERE email='$email'";
         $query_exec = mysqli_query($connection, $query);
-        $num_of_rows_matching = mysqli_num_rows($query_exec);
-        if($num_of_rows_matching > 0){
-            session_start();
-            $_SESSION["is_logged_in"] = true;
-            $_SESSION["user_email"] = $email;
-            header("Location: index.php");
+        if($query_exec){
+            echo "<div class=\"alert alert-success\" role=\"alert\">
+            Password changed successfully
+          </div>";
         } else {
             echo "<div class=\"alert alert-danger\" role=\"alert\">
-            Login Failed
+            Failed to change password
           </div>";
         }
     }
@@ -29,24 +27,20 @@
     
 <form action="" method = 'post' >
         <div class="container">
-          <h1>Login</h1>
+          <h1>Forgot Password</h1>
           <hr>
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" class="form-control" id="email" required>
       
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" class="form-control" id="psw" required>
+          <label for="psw"><b>New Password</b></label>
+          <input type="password" placeholder="Enter New Password" name="new_psw" class="form-control" id="psw" required>
     
-          <button type="submit" class="btn btn-success">Login</button>
+          <button type="submit" class="btn btn-success">Reset Password</button>
          
         </div>
       
         <div class="container signin">
           <p>Don't have an account? <a href="register.php">Sign Up</a>.</p>
-        </div>
-
-        <div class="container signin">
-          <p>Forgot password ? <a href="forgot.php">Reset Here</a>.</p>
         </div>
         
       </form>
