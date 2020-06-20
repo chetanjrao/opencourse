@@ -51,12 +51,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           </div>
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" class="form-control" id="email" required>
-      
+          <p id="email_error_text"></p>
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" class="form-control" id="psw" required>
       
           <label for="psw-repeat"><b>Repeat Password</b></label>
           <input type="password" placeholder="Repeat Password" name="cpsw" class="form-control" id="psw-repeat" required>
+          <p id="error_text"></p>
           <hr>
           
       
