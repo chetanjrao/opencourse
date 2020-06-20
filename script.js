@@ -1,24 +1,16 @@
-function changeText(e){
-    var paragraph = document.getElementById("hello_text")
-    paragraph.innerText = "Hi"
-}
-
-
-var isRed = true;
-var paragraph = document.getElementById("hello_text")
-paragraph.style.transition = "all 2s";
-
-function changeColor(event){
-    if(isRed){
-        paragraph.style.color = "yellow";
-        paragraph.style.fontSize = "21px";
-        isRed = false;
+function checkPassword(event){
+    event.preventDefault()
+    var password = document.getElementById("psw")
+    var repeat_password = document.getElementById("psw-repeat")
+    var password_value = password.value
+    var repeat_password_value = repeat_password.value
+    if(password_value == repeat_password_value){
+        var form = document.getElementById("form")
+        form.submit()
     } else {
-        paragraph.style.color = "red";
-        paragraph.style.fontSize = "12px";
-        isRed = true;
+        alert("Passwords do not match")
     }
 }
 
-var button = document.getElementById("button")
-button.onclick = changeColor
+var submit_button = document.getElementById("submit_button")
+submit_button.onclick = checkPassword
