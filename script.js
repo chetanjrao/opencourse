@@ -3,12 +3,9 @@ var repeat_password = document.getElementById("psw-repeat")
 var error_text = document.getElementById("error_text")
 
 const checkPassword = (event) => {
-    console.log("Hello")
     var password_value = password.value
     var repeat_password_value = repeat_password.value
     if(password_value == repeat_password_value){
-        // var form = document.getElementById("form")
-        // form.submit()
         error_text.style.color = "green"
         error_text.innerText = "Hurray, passwords matching"
     } else {
